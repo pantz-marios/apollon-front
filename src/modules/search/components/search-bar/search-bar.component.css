@@ -1,0 +1,76 @@
+
+.search-bar {
+  position: relative;
+  width: 500px;
+}
+
+.search-bar:hover .search-bar-input, .search-bar:focus-within .search-bar-input  {
+  box-shadow: var(--searchbar-shadow-color) 0px 2px 20px 0px;
+}
+
+.search-bar-input {
+  width: 100%;
+  box-sizing: border-box;
+  outline: none;
+  font-family: Ubuntu;
+  font-weight: 500;
+	font-size: 16px;
+  padding: 10px 43px 10px 10px; 
+  border-radius: 5px;
+
+  background-color: var(--secondary-background-color);  
+  -webkit-transition: background-color 200ms linear;
+  -ms-transition: background-color 200ms linear;
+  transition: background-color 200ms linear;
+
+	color: var(--secondary-font-color);
+  -webkit-transition: color 200ms linear;
+  -ms-transition: color 200ms linear;
+  transition: color 200ms linear;
+
+  border: 1px solid var(--secondary-border-color);
+  -webkit-transition: border-color 200ms linear;
+  -ms-transition: border-color 200ms linear;
+  transition: border-color 200ms linear;
+
+  /* box-shadow: 0; */
+  -webkit-transition: box-shadow 200ms ease-in-out;
+  -ms-transition: box-shadow 200ms ease-in-out;
+  transition: box-shadow 200ms ease-in-out;
+}
+
+.search-bar-button {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  outline: none;
+  cursor: pointer;
+	height: 43px;
+	width: 43px;
+	border: 0;
+
+  mask-image: url('/assets/search.png');
+  mask-repeat: no-repeat;
+  mask: url("/assets/search.png") no-repeat scroll center center #6699ffa0;
+  mask-size: auto;
+  -webkit-mask-position-x: center;
+  -webkit-mask-position-y: center;
+
+  background-color: var(--secondary-font-color);
+  -webkit-transition: background-color 200ms linear;
+  -ms-transition: background-color 200ms linear;
+  transition: background-color 200ms linear;
+}
+
+.search-bar-button:hover {
+  background-color: #d0d0d0;
+}
+
+.search-bar-button::-moz-focus-inner {
+  border: 0;
+}
+
+.search-bar-button:active {
+  background-color: #a0a0a0;
+}

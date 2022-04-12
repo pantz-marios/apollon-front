@@ -1,0 +1,99 @@
+
+<div class="simple-player-container" #simplePlayerContainer>
+
+  <!-- HTML5 video player -->
+  <div class="video-container">
+    <video #videoPlayer [attr.poster]="poster" style="width: 100%;" (click)="videoPlayerClicked();">
+      <source [attr.src]="videoSrc" [attr.type]="videoType">
+    </video>
+  </div>
+
+
+  <!-- custom controls -->
+  <ng-container *ngIf="controls || isFullScreenActive">
+    <div class="video-controls-container">
+      <!-- top video controls (progress bar) -->
+      <div class="top-video-controls-container">
+        <div style="position: relative; display: flex; flex: 1;">
+          <!-- seek slider -->
+          <slider class="seek-slider"
+            [value]="seekSliderValue"
+            [min]="0"
+            [max]="seekSliderMaxValue"
+            (onValueChange)="onSeekSliderValueChange($event)"
+            (onDragStart)="onSeekSliderDragStart()"
+            (onDragEnd)="onSeekSliderDragEnd()"
+            (onMouseOver)="onSeekSliderMouseOver($event)"
+          >
+          </slider>
+
+          <!-- seek slider tooltip -->
+          <div class="seek-slider-tooltip" #seekSliderTooltip>
+            {{ seekSliderTooltipValue | secsToHmsPipe}}
+          </div>
+        </div>
+      </div>
+    
+
+      <!-- bottom video controls -->
+      <div class="bottom-video-controls-container">
+
+        <!-- Play/Pause control buttons -->
+        <div class="video-controls-container-play">
+          <span class="player-button" style="margin-right: 10px;" (click)="playPauseButtonClicked()" >
+            <span class="player-button-icon" [ngClass]="{
+                'play-button': isPaused,
+                'pause-button': !isPaused
+              }">
+            </span>
+          </span>
+        </div>
+
+        <div style="background-color: #ffffff; width: 3px; height: 3px; border-radius: 50%;"></div>
+
+        <!-- Volume controls -->
+        <div class="video-controls-container-volume" style="margin-left: 12px;">
+          <span class="player-button" style="margin-right: 10px;" (click)="volumeButtonClicked()">
+            <span class="player-button-icon" [ngClass]="{
+                'volume-off-button': isVolumeOff,
+                'volume-down-button': isVolumeDown,
+                'volume-up-button': isVolumeUp
+              }">
+            </span>
+          </span>
+
+          <slider class="volume-slider"
+            [value]="volumeSliderValue"
+            [min]="0"
+            [max]="1"
+            (onValueChange)="onVolumeSliderValueChange($event)"
+          >
+          </slider>
+        </div>
+
+        <div style="background-color: #ffffff; width: 3px; height: 3px; border-radius: 50%;"></div>
+
+        <!-- Time elapsed and duration -->
+        <div class="video-controls-container-time" style="margin-left: 12px;">
+          <span>{{ elapsedTimeSecs | secsToHmsPipe}}</span>
+          <span style="margin-left: 3px;">/</span>
+          <span style="margin-left: 3px;">{{ durationSecs | secsToHmsPipe}}</span>
+        </div>
+        
+        <!-- FullScreen control buttons -->
+        <div class="video-controls-container-fullscreen">
+          <ng-container *ngIf="fullscreenEnabled">
+            <span class="player-button" style="padding: 10px;" (click)="fullscreenButtonClicked()">
+              <span class="player-button-icon" [ngClass]="{
+                  'fullscreen-button': !isFullScreenActive,
+                  'fullscreen-exit-button': isFullScreenActive
+                }">
+              </span>
+            </span>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+
+</div>

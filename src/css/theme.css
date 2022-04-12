@@ -1,0 +1,74 @@
+
+.secondary-button {
+  padding: 7px 15px;
+  text-decoration: none;
+  font-family: Ubuntu;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  border-radius: 3px;
+  border: 0;
+
+  background-color: var(--secondary-button-background-color);
+  -webkit-transition: background-color 200ms linear;
+  -ms-transition: background-color 200ms linear;
+  transition: background-color 200ms linear;
+
+  color: var(--secondary-button-foreground-color);
+  -webkit-transition: color 200ms linear;
+  -ms-transition: color 200ms linear;
+  transition: color 200ms linear;
+}
+
+.secondary-button:hover {
+  background-color: var(--secondary-button-background-color-hover);
+}
+
+.secondary-button:active {
+  background-color: var(--secondary-button-background-color-active);
+}
+
+
+
+
+
+.icon-button {
+  display: flex;
+  border-radius: 3px; /* 50%; */
+  padding: 8px;
+  cursor: pointer;
+
+  background-color: var(--icon-button-background-color);
+  -webkit-transition: background-color 100ms ease-in-out;
+  -ms-transition: background-color 100ms ease-in-out;
+  transition: background-color 100ms ease-in-out;
+}
+
+.icon-button:hover {
+  background-color: var(--icon-button-background-color-hover);
+}
+
+.icon-button:active {
+  background-color: var(--icon-button-background-color-active);
+}
+
+.icon-button-icon {
+  mask-repeat: no-repeat;
+  mask-size: contain;
+  width: 24px;
+  height: 24px;
+
+  background-color: var(--icon-button-foreground-color);
+  -webkit-transition: background-color 200ms linear;
+  -ms-transition: background-color 200ms linear;
+  transition: background-color 200ms linear;
+}
+
+
+
+
+
+.delete-button {
+  mask-image: url(/assets/delete-icon.svg);
+  background-color: #d35353;
+}

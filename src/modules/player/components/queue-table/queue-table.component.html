@@ -1,0 +1,41 @@
+
+<div class="queue-table">
+  <simple-table style="display: flex; flex: 1;"
+    [items]="tableItems"
+    [columns]="tableColumns"
+    [hideHeader]="true"
+  >
+  </simple-table>
+</div>
+
+
+
+
+
+<ng-template #thumbnailCellTemplate let-col="col" let-row="row">
+  <div class="thumbnail-container" (click)="onPlayQueueItem(row)">
+    <img [attr.src]="row[col.property]">
+
+    <div class="play-button-background" [ngClass]="{'play-button-background-visible': row['isLoading'] | async}"></div>
+
+    <ng-container *ngIf="row['isLoading'] | async; else queueItemNotLoading">
+      <dots-loader style="position: absolute;"></dots-loader>
+    </ng-container>
+    <ng-template #queueItemNotLoading>
+      <div class="icon-button small-play-button"><div class="icon-button-icon"></div></div>
+    </ng-template>
+  </div>
+</ng-template>
+
+
+<ng-template #titleArtistCellTemplate let-col="col" let-row="row">
+  <div class="title-artist-info-container">
+    <span class="title-info video-info">{{ row['title'] }}</span>
+    <span class="artist-info video-info">{{ row['artist'] }}</span>
+  </div>
+</ng-template>
+
+
+<ng-template #actionsCellTemplate let-col="col" let-row="row">
+  <div class="icon-button" (click)="onRemoveQueueItem(row)"><div class="icon-button-icon delete-button"></div></div>
+</ng-template>

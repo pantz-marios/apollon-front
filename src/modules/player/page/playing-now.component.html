@@ -1,0 +1,17 @@
+
+
+<!-- this is the space the 'simple-player' component is occupying  from 'app' component -->
+<div class="player-placeholder-container" #playerPlaceholderContainer>
+  <div class="player-placeholder" #playerPlaceholder></div>
+</div>
+
+
+<div class="right-layout-slot">
+  <div style="display: flex; justify-content: flex-end; margin-bottom: 10px;">
+    <button class="secondary-button" (click)="onClearQueue()">Clear</button>
+  </div>
+
+  <div class="queue-table-container">
+    <queue-table></queue-table>
+  </div>
+</div>

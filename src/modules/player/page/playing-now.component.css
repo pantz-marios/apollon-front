@@ -1,0 +1,55 @@
+:host {
+  display: flex;
+  flex: 1 1 100%;
+  overflow: auto;
+  overflow-x: hidden;
+
+  flex-direction: row;
+
+  --queue-table-width: 500px;
+}
+
+
+.player-placeholder-container {
+  display: flex;
+  flex: 0 1 100%;
+
+  /* background-color: cornflowerblue; */
+  position: relative;
+  margin-top: 30px;
+  margin-left: 30px;
+  width: calc(100vw - 30px - 30px - 30px - var(--queue-table-width));   /* calc(100vw - 300px - 600px); */
+  height: calc(100% - 30px - 30px);   /* -30px : top margin   and   -30px : bottom margin  */
+  margin-bottom: 30px;
+  min-width: 0;
+}
+
+.right-layout-slot {
+  display: flex; 
+  flex: 1 1 var(--queue-table-width); 
+  flex-direction: column; 
+  margin: 30px; 
+  min-width: var(--queue-table-width);
+}
+
+.player-placeholder {
+  /* background-color: #db565694; */
+
+  -webkit-transition: width 50ms linear;
+  -ms-transition: width 50ms linear;
+  transition: width 50ms linear;
+
+  -webkit-transition: height 50ms linear;
+  -ms-transition: height 50ms linear;
+  transition: height 50ms linear;
+}
+
+.queue-table-container {
+  display: flex;
+  flex: 1;
+  overflow-y: scroll;
+  overflow-x: hidden;
+
+  border-radius: 3px;
+  border: 2px solid var(--primary-border-color);
+}

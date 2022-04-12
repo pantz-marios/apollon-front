@@ -1,0 +1,22 @@
+:root {
+  --item-width: 240px;   /* 320px; */
+  --item-height: 135px;  /* 180px; */
+  --horizontal-spacing: 30px;
+  --vertical-spacing: 100px;
+}
+
+.tile-pane
+{
+  display: flex;
+  flex-wrap: wrap;
+  grid-gap: var(--horizontal-spacing);
+  grid-template-columns: repeat(auto-fill, var(--item-width));
+  /* align-content: center;
+  justify-content: center; */
+}
+
+.tile-pane > *
+{
+  background-color: transparent;
+  height: calc(var(--item-height) + var(--vertical-spacing));
+}

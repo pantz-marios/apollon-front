@@ -1,0 +1,14 @@
+<div class="slider-container" #sliderTrack>
+  <div class="slider-track slider-track-background" style="width: 100%;"></div>
+  <!-- <div class="slider-track slider-track-middle" style="width: 25%;"></div> -->
+  <div class="slider-track slider-track-middle" style="width: 0%;"></div>
+  <div class="slider-track slider-track-front" [style]="{width: trackForegroundWidth }"></div>
+
+  <div class="slider-thumb" drag-and-drop [style]="{top: thumbYOffset }" #sliderThumb
+    [autoUpdate]="false"
+    (onDrag)="onDrag($event)"
+    (onDragStart)="onSliderThumDragStart()"
+    (onDragEnd)="onSliderThumDragEnd()"
+  >
+  </div>
+</div>

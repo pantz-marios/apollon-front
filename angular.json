@@ -1,0 +1,96 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "apollon-front": {
+      "projectType": "application",
+      "schematics": {},
+      "root": "",
+      "sourceRoot": "src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apollon-front",
+            "index": "src/index.html",
+            "main": "src/main.ts",
+            "polyfills": "src/polyfills.ts",
+            "tsConfig": "tsconfig.json",
+            "aot": true,
+            "assets": [
+              "src/favicon.ico",
+              "src/assets",
+              "src/fonts"
+            ],
+            "styles": [
+              "src/main.css",
+              "src/css/theme.css",
+              "src/css/sidebar.css",
+              "src/css/main-nav-menu.css",
+              "src/css/mobile.css",
+              "src/css/font-awesome-animation.css",
+              "src/css/themify-icons/themify-icons.css",
+              "src/css/themify-icons/ie7/ie7.css",
+              "src/css/fonts/roboto.css",
+              "src/css/fonts/ubuntu.css",
+              "src/css/fonts/lobster-two.css"
+            ],
+            "scripts": [
+              "src/js/sidebar.js"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "apollon-front:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "apollon-front:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "apollon-front:build"
+          }
+        }
+      }
+    }
+  },
+  "defaultProject": "apollon-front"
+}

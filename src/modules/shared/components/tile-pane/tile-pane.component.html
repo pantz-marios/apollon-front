@@ -1,0 +1,8 @@
+
+<ng-container *ngIf="itemTemplate">
+  <div class="tile-pane">
+    <ng-container *ngFor="let item of items">
+      <ng-container *ngTemplateOutlet="itemTemplate; context: {itemContext: item}"></ng-container>
+    </ng-container>
+  </div>
+</ng-container>

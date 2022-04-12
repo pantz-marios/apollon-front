@@ -1,0 +1,114 @@
+<div class="shell-container">
+        <div id="main-sidebar" class="sidebar">
+                <div class="sidebar-logo" style="display: flex; flex-direction: row-reverse;">
+                        <div id="expand-menu-button" class="expand-menu-button topbar-item-container">
+                            <span class="sidebar-icon circle-icon-container ti-menu" style="color: #707070;" onclick="toggleSidebar();"></span>
+                        </div>
+                        <div class="logo-container">
+                            <div style="display: flex; flex-direction: column; flex: 1; row-gap: 10px; justify-content: center;">
+                                <div class="logo-text">Apollon</div>  
+                                <div class="logo-text" style="margin-top: -4px; margin-left: 64px; font-size: 40px;">music</div> 
+                            </div>
+                         </div>
+                </div>
+                <div class="sidebar-menu">
+                        <div class="main-nav-menu-container">
+                            <ul class="main-nav-menu">
+                                <li>
+                                    <a class="vertical-menu-item" [attr.submenu-expanded]="(hightlightedMenuItem | async) === '/home'" routerLink="/home" routerLinkActive="active">
+                                        <span class="sidebar-icon vertical-menu-item-icon home-icon"></span>
+                                        <span class="icon-text">Home</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="vertical-menu-item" [attr.submenu-expanded]="(hightlightedMenuItem | async).startsWith('/search')" routerLink="/search" [queryParams]="{q: lastSearchQuery}" routerLinkActive="active">
+                                        <span class="sidebar-icon vertical-menu-item-icon search-icon"></span>
+                                        <span class="icon-text">Search</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="vertical-menu-item" [attr.submenu-expanded]="(hightlightedMenuItem | async) === '/playing-now'" routerLink="/playing-now" routerLinkActive="active">
+                                        <span class="sidebar-icon vertical-menu-item-icon play-icon"></span>
+                                        <span class="icon-text">Playing Now</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                </div>
+                <div style="display: flex; flex-direction: column; flex: 0 1 auto;">
+                </div>
+        </div>
+        <div id="sidebar-right-content">
+                <div id="overlay"></div>
+                <div class="topbar" id="mainTopBar">
+                        <div class="topbar-left">
+                            <div id="expand-menu-button" class="topbar-expand-menu-button topbar-item-container">
+                                <span class="sidebar-icon circle-icon-container ti-menu" style="color: #707070;" onclick="toggleSidebar();"></span>
+                            </div>
+                        </div>
+                        <div class="topbar-center">
+                            <div style="display: flex; align-items: center;">
+                                <search-bar 
+                                    [searchQuery]="lastSearchQuery"
+                                    (onSearch)="onSearch($event)"
+                                >
+                                </search-bar>
+                            </div>
+                        </div>
+                        <div class="topbar-right">
+                            <div class="topbar-item-container topbar-right-item">
+                                <span class="topbar-icon-container" style="margin-right: 20px;" (click)="toggleTheme()">
+                                    <span class="topbar-icon" [ngClass]="{
+                                        'light-theme-button': activeThemeName === 'dark',
+                                        'dark-theme-button': activeThemeName == null || activeThemeName === 'light'
+                                    }"></span>
+                                </span>
+                            </div>   
+                        </div>
+                </div>
+                <div class="main-content">
+
+                    <div class="player-container" [style]="playerContainerStyle$ | async">
+                        <simple-player style="display: flex; flex: 1;" #player
+                            [poster]="playerState.thumbnailUrl$ | async"
+                            [controls]="false"
+                        >
+                        </simple-player>
+                    </div>
+
+                    <router-outlet></router-outlet>
+                </div>
+                <div class="bottombar">
+                    <player-controls style="display: flex; flex: 1;"
+                        [seekSliderValue]="player.seekSliderValue"
+                        [seekSliderMaxValue]="player.seekSliderMaxValue"
+                        [seekSliderTooltipValue]="player.seekSliderTooltipValue"
+                        [isPaused]="player.isPaused"
+                        [isVolumeOff]="player.isVolumeOff"
+                        [isVolumeDown]="player.isVolumeDown"
+                        [isVolumeUp]="player.isVolumeUp"
+                        [volumeSliderValue]="player.volumeSliderValue"
+                        [elapsedTimeSecs]="player.elapsedTimeSecs"
+                        [durationSecs]="player.durationSecs"
+                        [fullscreenEnabled]="player.fullscreenEnabled"
+                        [isFullScreenActive]="player.isFullScreenActive"
+                        [videoTitle]="playerState.videoTitle$ | async"
+                        [videoArtist]="playerState.videoArtist$ | async"
+                        (onSeekSliderValueChange)="player.onSeekSliderValueChange($event)"
+                        (onSeekSliderDragStart)="player.onSeekSliderDragStart()"
+                        (onSeekSliderDragEnd)="player.onSeekSliderDragEnd()"
+                        (playPauseButtonClicked)="player.playPauseButtonClicked()"
+                        (playPreviousButtonClicked)="playPreviousButtonClicked()"
+                        (playNextButtonClicked)="playNextButtonClicked()"
+                        (volumeButtonClicked)="player.volumeButtonClicked()"
+                        (onVolumeSliderValueChange)="player.onVolumeSliderValueChange($event)"
+                        (fullscreenButtonClicked)="player.fullscreenButtonClicked()"
+                    >
+                    </player-controls>
+                </div>
+        </div>
+</div>
+
+
+
+<popup-container></popup-container>

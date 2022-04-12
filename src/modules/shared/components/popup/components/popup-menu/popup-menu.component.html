@@ -1,0 +1,23 @@
+
+<ng-template #menuTemplate let-items="popupTemplateContext">
+  <div elemref (onElemRef)="onElemRefChanged($event)" class="popup-menu">
+    <ng-container *ngFor="let item of items">
+      <ng-container *ngIf="!item.separator">
+        <a class="popup-menu-item" (mouseenter)="onMenuItemMouseEnter($event, item)" (click)="onMenuItemClick(item)">
+          <span class="popup-menu-item-icon">
+            <img [src]="item.iconSrc">
+          </span>
+          <span class="popup-menu-item-text">
+            {{ item.text }}
+          </span>
+          <ng-container *ngIf="item.items">
+            <span class="submenu-arrow"></span>
+          </ng-container>
+        </a>
+      </ng-container>
+      <ng-container *ngIf="item.separator">
+        <div class="separator"></div>
+      </ng-container>
+    </ng-container>
+  </div>
+</ng-template>

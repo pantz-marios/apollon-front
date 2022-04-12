@@ -1,0 +1,42 @@
+:host {
+  display: flex;
+  flex: 1;
+}
+
+.slider-container {
+  position: relative;
+  display: flex;
+  flex: 1;
+  align-items: center;
+  width: 100%;
+  height: 12px;
+  cursor: pointer;
+  border: 0;
+  user-select: none;
+}
+
+.slider-track {
+  position: absolute;
+  height: 5px;
+  transition: height 0.1s linear;
+}
+
+.slider-track-background {
+  background-color: #ffffff;
+}
+
+.slider-track-middle {
+  background-color: #b0b0b0;
+}
+
+.slider-track-front {
+  background-color: #6a5acd;
+}
+
+.slider-thumb {
+  position: relative;
+  width: 30px;
+  height: 30px;
+  background-color: #2196f380;
+  cursor: pointer;
+}

@@ -1,0 +1,15 @@
+
+@media screen and (max-width: 800px) {
+  #expand-menu-button {
+    visibility: visible;
+    max-width: 50px;
+  }
+
+  #main-sidebar {
+    width: 0px;
+  }
+
+  #sidebar-right-content {
+    margin-left: 0px;
+  }
+}

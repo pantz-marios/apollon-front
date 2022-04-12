@@ -1,0 +1,19 @@
+
+<div class="table simple-table">
+  <div class="tr th" *ngIf="!hideHeader">
+    <div *ngFor="let col of columns" class="td" [ngClass]="{'simple-table-header': true}">
+      {{ col.header }}
+    </div>
+  </div>
+  <div *ngFor="let item of items | async" class="tr" [ngClass]="{'simple-table-row': true, 'simple-table-row-selected': item.rowSelected }">
+    <div *ngFor="let col of columns" class="td" [attr.class]="col.className" [ngClass]="{'simple-table-cell': true}">
+      <ng-container *ngIf="col.type === 0">
+        {{ item[col.property] }}
+      </ng-container> 
+      <ng-container *ngIf="col.type === 1">
+        <ng-container *ngTemplateOutlet="col.customCellTemplate; context: { col: col, row: item }"></ng-container>
+      </ng-container> 
+    </div>
+  </div>
+</div>
+
